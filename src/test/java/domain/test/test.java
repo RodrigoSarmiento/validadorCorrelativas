@@ -23,8 +23,31 @@ public class test{
         analisis1.setCorrelativas(algebra);
 
         katy.setMateriasAP(algebra);
+
         Inscripcion unaInscripcion = new Inscripcion(katy);
+
         unaInscripcion.agregarMaterias(analisis1, analisis2);
+
         Assert.assertEquals(false, unaInscripcion.Aprobada());
+    }
+
+    @Test
+    public void testInscripcionAprobada(){
+        Materia algoritmos = new Materia("Algoritmos y Estructuras de Datos");
+        Materia pdep = new Materia("Paradigmas de Programacion");
+        Materia dds = new Materia("Diseño de Sistemas");
+
+        Alumno franco = new Alumno("1566710", "Franco");
+
+        pdep.setCorrelativas(algoritmos);
+        dds.setCorrelativas(algoritmos, pdep);
+
+        franco.setMateriasAP(algoritmos, pdep);
+
+        Inscripcion unaInscripcion = new Inscripcion(franco);
+
+        unaInscripcion.agregarMaterias(dds);
+
+        Assert.assertTrue(unaInscripcion.Aprobada());
     }
 }
